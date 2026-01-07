@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title if title else "Evidence-Based Candidate Profiles" }}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+        color: #1f2933;
+      }
+      header {
+        margin-bottom: 24px;
+      }
+      h1, h2, h3 {
+        color: #102a43;
+      }
+      .card {
+        border: 1px solid #d9e2ec;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
+      label {
+        font-weight: 600;
+        display: block;
+        margin-top: 12px;
+      }
+      input[type="text"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border-radius: 4px;
+        border: 1px solid #bcccdc;
+      }
+      .actions {
+        margin-top: 16px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #d9e2ec;
+        padding: 8px;
+        text-align: left;
+      }
+      .tag {
+        display: inline-block;
+        background: #e0f2fe;
+        color: #035388;
+        padding: 4px 8px;
+        border-radius: 999px;
+        margin-right: 4px;
+      }
+      .link {
+        color: #0b69a3;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Evidence-Based Candidate Profiles</h1>
+      <p>Structured, evidence-first summaries to help hiring managers focus interviews.</p>
+    </header>
+    {% block content %}{% endblock %}
+  </body>
+</html>

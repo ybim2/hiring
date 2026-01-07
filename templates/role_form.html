@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>New role</h2>
+    <form method="post" action="/roles">
+      <label for="title">Role title</label>
+      <input id="title" name="title" type="text" required />
+
+      <label for="role_type">Role type</label>
+      <select id="role_type" name="role_type" required>
+        {% for role_type in role_types %}
+          <option value="{{ role_type }}">{{ role_type }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="job_description">Job description</label>
+      <textarea id="job_description" name="job_description" rows="10" required></textarea>
+
+      <div class="actions">
+        <button type="submit">Create role</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

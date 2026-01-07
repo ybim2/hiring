@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>Evidence-based candidate report</h2>
+    <p><strong>Role:</strong> {{ role["title"] }} ({{ role["role_type"] }})</p>
+    <p><strong>Generated:</strong> {{ generated_at }}</p>
+    <p><a class="link" href="/report/{{ candidate["id"] }}/pdf">Export as PDF</a></p>
+  </div>
+
+  <div class="card">
+    <h3>Executive snapshot</h3>
+    <p><strong>Channels owned:</strong> {{ channels | join(", ") }}</p>
+    <p><strong>Budget range:</strong> {{ candidate["budget_range"] }}</p>
+    <p><strong>ICP focus:</strong> {{ candidate["icp"] }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Role-fit map</h3>
+    <ul>
+      {% for requirement in requirements %}
+        <li>{{ requirement }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Metrics table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Action taken</th>
+          <th>Constraint</th>
+          <th>Numeric result</th>
+          <th>Timeframe</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for metric in metrics %}
+          <tr>
+            <td>{{ metric.channel }}</td>
+            <td>{{ metric.action_taken }}</td>
+            <td>{{ metric.constraint }}</td>
+            <td>{{ metric.numeric_result }}</td>
+            <td>{{ metric.timeframe }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Candidate-declared risks</h3>
+    <p>{{ candidate["risks"] }}</p>
+  </div>
+
+  <div class="card">
+    <h3>System-observed risk flags</h3>
+    {% if risk_flags %}
+      <ul>
+        {% for flag in risk_flags %}
+          <li>{{ flag }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No systemic risks detected.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h3>Suggested interview focus</h3>
+    <ul>
+      {% for item in interview_focus %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% if candidate["portfolio_links"] %}
+    <div class="card">
+      <h3>Portfolio links</h3>
+      <pre>{{ candidate["portfolio_links"] }}</pre>
+    </div>
+  {% endif %}
+{% endblock %}
