@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>Create a new role</h2>
+    <p>Start with a job description and capture evidence-based requirements.</p>
+    <a class="link" href="/roles/new">Create role</a>
+  </div>
+  <h2>Existing roles</h2>
+  {% if roles %}
+    {% for role in roles %}
+      <div class="card">
+        <h3>{{ role["title"] }}</h3>
+        <p class="tag">{{ role["role_type"] }}</p>
+        <p>Created {{ role["created_at"] }}</p>
+        <a class="link" href="/roles/{{ role["id"] }}">View role</a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No roles yet.</p>
+  {% endif %}
+{% endblock %}

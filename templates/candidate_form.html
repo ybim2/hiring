@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>Candidate evidence form</h2>
+    <p>Role: <strong>{{ role["title"] }}</strong></p>
+    <form method="post">
+      <label>Channels owned</label>
+      {% for channel in channel_options %}
+        <div>
+          <input type="checkbox" id="channel_{{ loop.index }}" name="channels" value="{{ channel }}" />
+          <label for="channel_{{ loop.index }}">{{ channel }}</label>
+        </div>
+      {% endfor %}
+
+      <label for="budget_range">Budget range</label>
+      <select id="budget_range" name="budget_range" required>
+        {% for budget in budget_ranges %}
+          <option value="{{ budget }}">{{ budget }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="icp">ICP</label>
+      <select id="icp" name="icp" required>
+        {% for option in icp_options %}
+          <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Metrics (3-5 entries)</label>
+      <table>
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Action taken</th>
+            <th>Constraint</th>
+            <th>Numeric result</th>
+            <th>Timeframe</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for _ in range(5) %}
+            <tr>
+              <td><input type="text" name="metric_channel" /></td>
+              <td><input type="text" name="metric_action" /></td>
+              <td><input type="text" name="metric_constraint" /></td>
+              <td><input type="text" name="metric_result" /></td>
+              <td><input type="text" name="metric_timeframe" /></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <label for="risks">Candidate-declared risks (required)</label>
+      <textarea id="risks" name="risks" rows="4" required></textarea>
+
+      <label for="portfolio_links">Portfolio links</label>
+      <textarea id="portfolio_links" name="portfolio_links" rows="3"></textarea>
+
+      <div class="actions">
+        <button type="submit">Generate report</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

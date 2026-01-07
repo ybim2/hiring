@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2>{{ role["title"] }}</h2>
+    <p class="tag">{{ role["role_type"] }}</p>
+    <h3>Extracted requirements</h3>
+    <ul>
+      {% for requirement in requirements %}
+        <li>{{ requirement }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Candidate submission link</h3>
+    <p>Share this link with candidates to collect structured evidence.</p>
+    <p><a class="link" href="{{ candidate_link }}">{{ candidate_link }}</a></p>
+  </div>
+{% endblock %}
